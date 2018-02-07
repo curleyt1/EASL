@@ -5,8 +5,19 @@ an image of what matches what they are trying to tell their teacher and store
 the data creating a personalized action log for each student.
 
 
-#### Running server
-Configure your virtual-env or IDE to install python3, django, and python-bootstrap3.
+#### Dev Instructions
+First configure your virtual-env or IDE and install python3, django, and
+python-bootstrap3.
 
-- run `python manage.py migrate` to update model.
+###### When you update the model:
+- run `python manage.py migrate`.
+- run `python manage.py makemigration`.
+
+###### To start the Server
 - run `python manage.py runserver` to start server.
+
+###### To access /admin pages
+- run `python manage.py createsuperuser`
+- set username and password (email optional).
+- run the server and navigate to `localhost:8000/admin`.
+- log in with credentials that you set.

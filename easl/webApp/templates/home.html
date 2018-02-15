@@ -1,7 +1,18 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 {% for student in students %}
-  <li>
-    <a href="{% url 'student_detail' student.id %}">
-    {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
-    </a>
-  </li>
+  <div class="container"
+    <div class="col-sm-4">
+      <li>
+        <a href="{% url 'student_detail' student.id %}">
+        {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
+        </a>
+      </li>
+    </div>
+  </div>
 {% endfor %}

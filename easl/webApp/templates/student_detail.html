@@ -1,1 +1,8 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <h3>{{ student.first_name|capfirst }} {{ student.last_name|capfirst }}</h3>

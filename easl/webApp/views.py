@@ -9,10 +9,13 @@ from .models import Student
 class StartPageView(TemplateView):
     template_name = "start_page.html"
 
-
 class HomePageView(TemplateView):
 	def get(self, request, **kwargs):
 		return render(request, 'index.html', context=None)
+
+def home(request):
+    students = Student.objects.all()
+    return render(request, 'home.html', {'students': students})
 
 def student_detail(request, id):
     try:

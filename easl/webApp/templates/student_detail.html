@@ -5,10 +5,10 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<div class="container">
+<div class="page-header">
   <h3>
     {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
+    <small>{{ student.age }} years old</small>
+    <small>{{ student.gender }}</small>
   </h3>
-  <p>Age: {{ student.age }}</p>
-  <p>{{ student.gender }}</p>
 </div>

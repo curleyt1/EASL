@@ -1,9 +1,5 @@
-{# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+{% extends "base.html" %}
+{% block content %}
 
 {% for student in students %}
   <div class="container"
@@ -16,3 +12,5 @@
     </div>
   </div>
 {% endfor %}
+
+{% endblock %}

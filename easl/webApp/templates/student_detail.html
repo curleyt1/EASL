@@ -1,10 +1,11 @@
+{% extends "base.html" %}
 {# Load the tag library #}
 {% load bootstrap3 %}
 
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-
+{% block content %}
 {% load staticfiles %}
 <!--TODO: Fix Static file loading so that we can use static images local to the server.-->
 <script type="text/javascript">
@@ -52,10 +53,4 @@
   </button>
   {% endbuttons %}
 </div>
-
-<div class="footer">
-  <div class="text-center"
-    <a href="{% url 'home' %}">Go Back</a>
-    <a href="/about/">About Me</a>
-  </div>
-</div>
+{% endblock %}

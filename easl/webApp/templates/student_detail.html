@@ -1,6 +1,14 @@
 {% extends "base.html" %}
-{% block content %}
 
+{# Load the tag library #}
+{% load bootstrap3 %}
+{# Load Static images and JS #}
+{% load static %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
 <script type="text/javascript">
     function addImage(activity) {
         var img = document.createElement("img");
@@ -23,8 +31,6 @@
         document.body.appendChild(img);
     }
 </script>
-
-
 <div class="page-header">
   <h3>
     {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}

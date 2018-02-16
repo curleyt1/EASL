@@ -11,13 +11,15 @@
     <title>EASL</title>
   </head>
 
-  {% block content %}
-  {% endblock %}
+  <body>
+    {% block content %}
+    {% endblock %}
 
-  <div class="footer">
-    <div class="text-center"
-      <a href="{% url 'home' %}">Go Back</a>
-      <a href="/about/">About Me</a>
+    <div class="footer">
+      <div class="text-center"
+        <a href="/home/">Home</a>
+        <a href="/about/">About EASL</a>
+      </div>
     </div>
-  </div>
+  </body>
 </html>

@@ -1,25 +1,18 @@
 {% extends "base.html" %}
-{# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 {% block content %}
-{% load staticfiles %}
-<!--TODO: Fix Static file loading so that we can use static images local to the server.-->
+
 <script type="text/javascript">
     function addImage(activity) {
         var img = document.createElement("img");
         switch(activity) {
             case 'play':
-            img.src = "http://bangkok-companies.com/thailandbabytoys1.jpg";
+            img.src = "{% static "images/Toys.png" %}";
             break;
             case 'snack':
-            img.src = "http://iconbug.com/data/17/400/cb6f3ec9c92c5df900b1824c69cf7caa.png";
+            img.src = "{% static "images/Apple.png" %}";
             break;
             case 'outside':
-            img.src = "http://classwish.org/images/donategroups/playground.jpg";
+            img.src = "{% static "images/Park.png" %}";
             break;
             default:
             console.log("Error: Activity not found.");
@@ -36,7 +29,7 @@
   <h3>
     {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
     <small>{{ student.age }} years old</small>
-    <small>{{ student.gender. }}</small>
+    <small>{{ student.gender }}</small>
   </h3>
 </div>
 

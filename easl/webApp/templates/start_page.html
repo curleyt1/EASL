@@ -12,7 +12,7 @@
 
 		<div class="jumbotron text-center">
     		<h1>eASL</h1>
-			<form action="http://127.0.0.1:8000/student_detail/">
+			<form action="http://127.0.0.1:8000/student/1">
 				<p>
 					<label>Please Choose a student to start:</label>
 					<input type="text" name ="Student Name" list="students"/>
@@ -29,10 +29,10 @@
 				</p>
 			</form>
 
-			<form method="POST">
+			<form action="">
 				<select>
 					{% for student in students %}
-					<option value="{{ student }}">{{ student }}</option>
+					<option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name}}</option>
 					{% endfor %}
 				</select>
 			</form>

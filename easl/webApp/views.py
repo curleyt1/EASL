@@ -13,7 +13,7 @@ from .models import Student
 
 def start_page(request):
     students = Student.objects.all()
-    return render(request, 'start_page.html')
+    return render(request, 'start_page.html', {'students': students})
 
 def home(request):
     students = Student.objects.all()

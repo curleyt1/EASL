@@ -7,9 +7,13 @@ from .forms import StudentRegistrationForm
 
 from .models import Student
 
-class StartPageView(TemplateView):
+#class StartPageView(TemplateView):
+#    students = Student.objects.all()
+#    template_name = "start_page.html"
+
+def start_page(request):
     students = Student.objects.all()
-    template_name = "start_page.html"
+    return render(request, 'start_page.html')
 
 def home(request):
     students = Student.objects.all()
@@ -25,7 +29,7 @@ def student_detail(request, id):
 def registration_page(request):
     students = Student.objects.all()
     form = StudentRegistrationForm()
-    return render(request, 'registration_page.html', {'form': form})
+    return render(request, 'registration_page.html', {'form': students})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

@@ -29,6 +29,14 @@
 				</p>
 			</form>
 
+			<form method="POST">
+				<select>
+					{% for student in students %}
+					<option value="{{ student }}">{{ student }}</option>
+					{% endfor %}
+				</select>
+			</form>
+
 			<input type="submit" value="Register New Student" onclick="visitPage();"/>
 			<script>
 				function visitPage(){

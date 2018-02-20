@@ -2,7 +2,7 @@ from django.conf.urls import url
 from webApp import views
 
 urlpatterns = [
-    url(r'^$', views.StartPageView.as_view()),
+    url(r'^$', views.start_page, name='start_page'),
     url(r'^about/$', views.AboutPageView.as_view()),
     url(r'^home/$', views.home, name='home'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),

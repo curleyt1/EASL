@@ -3,18 +3,13 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.http import Http404
+from .forms import StudentRegistrationForm
 
 from .models import Student
 
 class StartPageView(TemplateView):
     students = Student.objects.all()
     template_name = "start_page.html"
-
-class HomePageView(TemplateView):
-
-    def get(self, request, **kwargs):
-        students = Student.objects.all()
-        return render(request, 'index.html', context=None)
 
 def home(request):
     students = Student.objects.all()
@@ -29,7 +24,8 @@ def student_detail(request, id):
 
 def registration_page(request):
     students = Student.objects.all()
-    return render(request, 'registration_page.html', {'students': students})
+    form = StudentRegistrationForm()
+    return render(request, 'registration_page.html', {'form': form})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

@@ -1,0 +1,53 @@
+<!-- webApp/templates/index.html -->
+{% extends "base.html" %}
+{% block content %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load staticfiles %}
+<!--TODO: Fix Static file loading so that we can use static images local to the server.-->
+<script type="text/javascript">
+    function addImage(activity) {
+        var img = document.createElement("img");
+        switch(activity) {
+            case 'play':
+            img.src = "http://bangkok-companies.com/thailandbabytoys1.jpg";
+            break;
+            case 'snack':
+            img.src = "http://iconbug.com/data/17/400/cb6f3ec9c92c5df900b1824c69cf7caa.png";
+            break;
+            case 'outside':
+            img.src = "http://classwish.org/images/donategroups/playground.jpg";
+            break;
+            default:
+            console.log("Error: Activity not found.");
+        }
+        img.height = 100;
+        img.width = 100;
+
+        document.body.appendChild(img);
+    }
+</script>
+
+<div class="jumbotron text-center">
+        <h1>eASL</h1>
+        {% buttons %}
+        <button class="btn btn-primary" onclick="addImage('play')";>
+          {% bootstrap_icon "star" %} Play
+        </button>
+        <button class="btn btn-primary" onclick="addImage('snack')";>
+          {% bootstrap_icon "apple" %} Snack
+        </button>
+        <button class="btn btn-primary" onclick="addImage('outside');">
+          {% bootstrap_icon "tree-deciduous" %} Outside
+        </button>
+        {% endbuttons %}
+        <a href="/">Go Back</a>
+        <a href="/about/">About Me</a>
+    </div>
+{%}

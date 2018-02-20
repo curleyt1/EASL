@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for student in students %}
-  <div class="container">
-    <div class="studentname">
-      <li>
-        <a href="{% url 'student_detail' student.id %}">
-        {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
-        </a>
-      </li>
-    </div>
-  </div>
-{% endfor %}
+<h1>Registration Page</h1>
+
+<form method ="POST" class="post-form">{%csrf_token %}
+  {{ form.as_p }}
+<button type="submit" class="save btn btn-default">Register</button>
+</form>
 
 {% endblock %}

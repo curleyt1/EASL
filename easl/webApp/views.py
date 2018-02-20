@@ -7,11 +7,14 @@ from django.http import Http404
 from .models import Student
 
 class StartPageView(TemplateView):
+    students = Student.objects.all()
     template_name = "start_page.html"
 
 class HomePageView(TemplateView):
-	def get(self, request, **kwargs):
-		return render(request, 'index.html', context=None)
+
+    def get(self, request, **kwargs):
+        students = Student.objects.all()
+        return render(request, 'index.html', context=None)
 
 def home(request):
     students = Student.objects.all()
@@ -24,5 +27,9 @@ def student_detail(request, id):
         raise Http404('Student not found')
     return render(request, 'student_detail.html', {'student': student})
 
+def registration_page(request):
+    students = Student.objects.all()
+    return render(request, 'registration_page.html', {'students': students})
+
 class AboutPageView(TemplateView):
-	template_name = "about.html"
+    template_name = "about.html"

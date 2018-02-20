@@ -19,3 +19,4 @@ class Student(models.Model):
             return today.year - self.date_of_birth.year - 1
         else:
             return today.year - self.date_of_birth.year
+

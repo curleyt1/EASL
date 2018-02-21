@@ -29,7 +29,7 @@ def student_detail(request, id):
 def registration_page(request):
     students = Student.objects.all()
     form = StudentRegistrationForm()
-    return render(request, 'registration_page.html', {'form': students})
+    return render(request, 'registration_page.html', {'form': form})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

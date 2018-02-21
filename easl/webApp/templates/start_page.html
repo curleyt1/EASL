@@ -7,35 +7,28 @@
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-<html>
-<body>
 
-		<div class="jumbotron text-center">
-    		<h1>eASL</h1>
-		<div>
-			Please select a student to start:
-		</div>
+<div class="jumbotron text-center">
+	<h1>eASL</h1>
+<div>
+Please select a student to start:
+</div>
 
+<form action="http://127.0.0.1:8000/student/2/">
+	<select>
+		{% for student in students %}
+		<option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name}}</option>
+		{% endfor %}
+	</select>
+	<input type="submit" value="Log in"/>
+</form>
 
-			<form action="http://127.0.0.1:8000/student/2/">
-				<select>
-					{% for student in students %}
-					<option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name}}</option>
-					{% endfor %}
-				</select>
-				<input type="submit" value="Log in"/>
-			</form>
+<input type="submit" value="Register New Student" onclick="visitPage();"/>
+<script>
+	function visitPage(){
+		window.location="http:127.0.0.:8000/registration_page";
+	}
+</script>
 
-			<input type="submit" value="Register New Student" onclick="visitPage();"/>
-			<script>
-				function visitPage(){
-					window.location="http:127.0.0.:8000/registration_page";
-				}
-			</script>
-
-		</div>
-
-</body>
-</html>
-
+</div>
 {%endblock%}

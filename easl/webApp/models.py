@@ -21,6 +21,9 @@ class Student(models.Model):
         else:
             return today.year - self.date_of_birth.year
 
+    def __str__(self):
+        return(self.first_name + ' ' + self.last_name)
+
 class Action(models.Model):
     ACTION_CHOICES = [('S', 'Snack'), ('P', 'Play'), ('O', 'Outside')]
     time = models.DateTimeField()

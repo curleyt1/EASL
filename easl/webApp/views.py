@@ -6,6 +6,7 @@ from django.http import Http404
 from .forms import StudentRegistrationForm
 
 from .models import Student
+from .models import Action
 
 #class StartPageView(TemplateView):
 #    students = Student.objects.all()
@@ -18,6 +19,10 @@ def start_page(request):
 def home(request):
     students = Student.objects.all()
     return render(request, 'home.html', {'students': students})
+
+def action_log(request):
+    actions = Action.objects.all()
+    return render(request, 'action_log.html', {'actions': actions})
 
 def student_detail(request, id):
     try:

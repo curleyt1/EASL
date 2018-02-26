@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.http import Http404
 from .forms import StudentRegistrationForm
 
+
 from .models import Student
 from .models import Action
 
@@ -33,7 +34,13 @@ def student_detail(request, id):
 
 def registration_page(request):
     students = Student.objects.all()
-    form = StudentRegistrationForm()
+    form = StudentRegistrationForm(request.POST)
+    first_name = request.POST.get('first_name', "")
+    last_name = request.POST.get('last_name', "")
+    date_of_birth = request.POST.get('date_of_birth', "")
+    gender = request.POST.get('gender', "")
+    if form.is_valid():
+        form = form.save()
     return render(request, 'registration_page.html', {'form': form})
 
 class AboutPageView(TemplateView):

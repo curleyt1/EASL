@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Registration Page</h1>
+<div class="page-header">
+  <h1 class="text-center"> New Student Registration Form </h1>
+</div>
 
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Register"/>
-</form>
+<div class="text-center">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register"/>
+  </form>
+</div>
 {% endblock %}

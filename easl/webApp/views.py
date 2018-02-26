@@ -5,21 +5,16 @@ from django.http import HttpResponse
 from django.http import Http404
 from .forms import StudentRegistrationForm
 
-
 from .models import Student
 from .models import Action
 
-#class StartPageView(TemplateView):
-#    students = Student.objects.all()
-#    template_name = "start_page.html"
-
-def start_page(request):
+def home(request):
     students = Student.objects.all()
     return render(request, 'start_page.html', {'students': students})
 
-def home(request):
+def directory(request):
     students = Student.objects.all()
-    return render(request, 'home.html', {'students': students})
+    return render(request, 'directory.html', {'students': students})
 
 def action_log(request):
     actions = Action.objects.all()

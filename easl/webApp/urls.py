@@ -2,10 +2,10 @@ from django.conf.urls import url
 from webApp import views
 
 urlpatterns = [
-    url(r'^$', views.start_page, name='start_page'),
+    url(r'^$', views.home, name='home'),
     url(r'^about/$', views.AboutPageView.as_view()),
-    url(r'^home/$', views.home, name='home'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),
     url(r'registration_page', views.registration_page, name='registration_page'),
-    url(r'^actions/$', views.action_log, name='action_log')
+    url(r'^actions/$', views.action_log, name='action_log'),
+    url(r'^directory/$', views.directory, name='directory')
 ]

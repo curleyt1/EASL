@@ -52,4 +52,20 @@
   </a>
   {% endbuttons %}
 </div>
+
+<div class="page-header">
+  <h3 class="text-center"> Actions </h3>
+</div>
+
+{% for action in actions %}
+  <div class="text-center">
+    <div class="col-md-6">
+        {{ action.get_action_display }}
+    </div>
+    <div class="col-md-6">
+        {{ action.time }}
+    </div>
+  </div>
+{% endfor %}
+
 {% endblock %}

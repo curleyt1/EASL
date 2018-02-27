@@ -26,12 +26,15 @@ def action_log(request):
     return render(request, 'action_log.html', {'actions': actions})
 
 def student_detail(request, id):
-    print('student_detail')
     try:
         student = Student.objects.get(id=id)
     except Student.DoesNotExist:
         raise Http404('Student not found')
-    return render(request, 'student_detail.html', {'student': student})
+    print('puttingactions')
+    actions = Action.objects.filter(student=student)
+    print(actions)
+    print('done')
+    return render(request, 'student_detail.html', {'student': student, 'actions': actions})
 
 def registration_page(request):
     students = Student.objects.all()
@@ -53,7 +56,8 @@ def save_action(request, id, action_code):
         raise Http404('Student not found')
     current_time = datetime.datetime.now()
     action = Action.objects.create(time = datetime.datetime.now(), action = action_code, student = acting_student)
-    return render(request, 'student_detail.html', {'student': acting_student})
+    actions = Action.objects.filter(student=acting_student)
+    return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

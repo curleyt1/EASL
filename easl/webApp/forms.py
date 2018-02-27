@@ -2,10 +2,17 @@ from django.db import models
 from django.forms import ModelForm
 from django import forms
 from .models import Student
+from .models import Action
 
 GENDER_CHOICES = (
     ('M'),
     ('F'),
+)
+
+ACTION_CHOICES = (
+('S'),
+('P'),
+('O'),
 )
 
 class StudentSelectionForm(ModelForm):
@@ -20,3 +27,10 @@ class StudentRegistrationForm(ModelForm):
     last_name = forms.CharField(max_length=50)
     date_of_birth = forms.DateField()
     gender = forms.Select(choices=GENDER_CHOICES)
+
+#class ActionForm(ModelForm):
+#    class Meta:
+#        model = Action
+#        fields = ('student', 'action')
+#
+#    action = forms.CharField(widget=forms.RadioSelect(choices=ACTION_CHOICES))

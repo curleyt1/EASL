@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -25,6 +26,7 @@ def action_log(request):
     return render(request, 'action_log.html', {'actions': actions})
 
 def student_detail(request, id):
+    print('student_detail')
     try:
         student = Student.objects.get(id=id)
     except Student.DoesNotExist:
@@ -41,6 +43,17 @@ def registration_page(request):
     if form.is_valid():
         form = form.save()
     return render(request, 'registration_page.html', {'form': form})
+
+def save_action(request, id, action_code):
+    try:
+        print('trying')
+        acting_student = Student.objects.get(id=id)
+    except Student.DoesNotExist:
+        print('failed')
+        raise Http404('Student not found')
+    current_time = datetime.datetime.now()
+    action = Action.objects.create(time = datetime.datetime.now(), action = action_code, student = acting_student)
+    return render(request, 'student_detail.html', {'student': acting_student})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

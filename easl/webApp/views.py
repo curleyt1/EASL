@@ -16,6 +16,10 @@ def directory(request):
     students = Student.objects.all()
     return render(request, 'directory.html', {'students': students})
 
+def registration_confirmation(request):
+    students = Student.objects.all()
+    return render(request, 'registration_confirmation.html', {'students': students})
+
 def action_log(request):
     actions = Action.objects.all()
     return render(request, 'action_log.html', {'actions': actions})

@@ -51,16 +51,6 @@ def registration_page(request):
     form = StudentRegistrationForm()
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
 
-def registration_sucess(request):
-    form = StudentRegistrationForm(request.POST)
-    first_name = request.POST.get('first_name', "")
-    last_name = request.POST.get('last_name', "")
-    date_of_birth = request.POST.get('date_of_birth', "")
-    gender = request.POST.get('gender', "")
-    if form.is_valid():
-        form = form.save()
-    return render(request, 'registration_page.html', {'form': form})
-
 def save_action(request, id, action_code):
     try:
         print('trying')

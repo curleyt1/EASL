@@ -24,6 +24,9 @@ class Student(models.Model):
     def __str__(self):
         return(self.first_name + ' ' + self.last_name)
 
+    class Meta:
+        unique_together = [("first_name", "last_name", "date_of_birth")]
+
 class Action(models.Model):
     ACTION_CHOICES = [('S', 'Snack'), ('P', 'Play'), ('O', 'Outside')]
     time = models.DateTimeField()

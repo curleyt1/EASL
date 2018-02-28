@@ -15,14 +15,14 @@ Please select a student to start:
 </div>
 
 <div class = "form-inline">
-	<select class="form-control" id="studentDropDown" style="width:auto;">
+	<select class="form-control" id="studentDropDown" style="margin-left:auto; margin-right:auto; width:auto;">
 		{% for student in students %}
 			<option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name}}</option>
 		{% endfor %}
 	</select>
-	<a class="btn btn-primary" onclick = "gotoStudent()">Log In</a>
 </div>
-<a class="btn btn-primary" onclick = "gotoRegistration()" style="margin-top:5px;">Register New Student</a>
+<a class="btn btn-primary" onclick = "gotoStudent()" style="margin-top:5px;">Log In</a>
+<a class="btn btn-default" onclick = "gotoRegistration()" style="margin-top:5px;">New Student</a>
 
 <script>
 	function gotoRegistration(){

@@ -21,13 +21,16 @@
 <div class="text-center">
   {% buttons %}
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'P' %}";>
-    {% bootstrap_icon "star" %} Play
+    <span class="glyphicon glyphicon-star" style="font-size: 64px"></span><br>
+    <h4>Play</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'S' %}";>
-    {% bootstrap_icon "apple" %} Snack
+    <span class="glyphicon glyphicon-apple" style="font-size: 64px"></span><br>
+    <h4>Snack</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'O' %}";>
-    {% bootstrap_icon "tree-deciduous" %} Outside
+    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <h4>Outside</h4>
   </a>
   {% endbuttons %}
 </div>
@@ -46,5 +49,9 @@
     </div>
   </div>
 {% endfor %}
+
+<div class="text-center">
+  Icons courtesy of <a href="https://glyphicons.com/">glyphicons.com</a>.
+</div>
 
 {% endblock %}

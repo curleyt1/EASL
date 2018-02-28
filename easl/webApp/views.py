@@ -38,7 +38,20 @@ def student_detail(request, id):
     return render(request, 'student_detail.html', {'student': student, 'actions': actions})
 
 def registration_page(request):
-    students = Student.objects.all()
+    display_success = False
+    if request.method == 'POST':
+        form = StudentRegistrationForm(request.POST)
+        if form.is_valid():
+            first_name = request.POST.get('first_name', "")
+            last_name = request.POST.get('last_name', "")
+            date_of_birth = request.POST.get('date_of_birth', "")
+            gender = request.POST.get('gender', "")
+            form = form.save()
+            display_success = True
+    form = StudentRegistrationForm()
+    return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
+
+def registration_sucess(request):
     form = StudentRegistrationForm(request.POST)
     first_name = request.POST.get('first_name', "")
     last_name = request.POST.get('last_name', "")

@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.http import Http404
+from django.utils import timezone
 from .forms import StudentRegistrationForm
 
 from .models import Student
@@ -54,8 +55,7 @@ def save_action(request, id, action_code):
     except Student.DoesNotExist:
         print('failed')
         raise Http404('Student not found')
-    current_time = datetime.datetime.now()
-    action = Action.objects.create(time = datetime.datetime.now(), action = action_code, student = acting_student)
+    action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
     actions = Action.objects.filter(student=acting_student)
     return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
 

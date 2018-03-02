@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<style>
+  #form{
+    border: 1px solid powderblue;
+    text-align: center;
+  }
+</style>
+
+{% if display_success %}
+  <div class="alert alert-success">
+    <h4 class = "text-center">Success!</h4>
+  </div>
+{% endif %}
+
+<div class="page-header">
+  <h1 class="text-center"> eASL Edit Student Information Page </h1>
+</div>
+
+<div id='form'>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  </form>
+</div>
+{% endblock %}

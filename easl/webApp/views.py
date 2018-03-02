@@ -47,6 +47,22 @@ def registration_page(request):
     form = StudentRegistrationForm()
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
 
+def edit_page(request):
+    students = Student.objects.all()
+    display_success = False
+    if request.method == "POST":
+        form = StudentEditForm(request.POST)
+        if form.is_valid():
+            first_name = request.POST.get('first_name', "")
+            last_name = request.POST.get('last_name', "")
+            date_of_birth = request.POST.get('date_of_birth', "")
+            gender = request.POST.get('gender', "")
+            form = form.save()
+            display_success = True
+    return render(request, 'edit_page.html',{'students': students, 'display_success': display_success})
+
+
+
 def save_action(request, id, action_code):
     try:
         print('trying')

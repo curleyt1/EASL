@@ -37,6 +37,3 @@ class StudentEditForm(ModelForm):
     last_name = forms.CharField(max_length=50)
     date_of_birth = forms.DateField()
     gender = forms.Select(choices=GENDER_CHOICES)
-
-
-    

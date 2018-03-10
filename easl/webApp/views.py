@@ -71,18 +71,24 @@ def edit_page(request, id):
             })
     return render(request, 'edit_page.html',{'student': student, 'form': form, 'display_success': display_success})
 
-
-
 def save_action(request, id, action_code):
     try:
-        print('trying')
         acting_student = Student.objects.get(id=id)
     except Student.DoesNotExist:
-        print('failed')
         raise Http404('Student not found')
     action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
     actions = Action.objects.filter(student=acting_student)
     return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
+
+# TODO: re-create as a post form to validate with CSRF
+def delete_student(request, id):
+    try:
+        student = Student.objects.get(id=id)
+        student.delete()
+    except Student.DoesNotExist:
+        raise Http404('Student not found')
+    students = Student.objects.all()
+    return render(request, 'start_page.html', {'students': students})
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

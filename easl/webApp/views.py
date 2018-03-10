@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import Http404
 from django.utils import timezone
 from .forms import StudentRegistrationForm
+from .forms import StudentEditForm
 
 from .models import Student
 from .models import Action
@@ -47,11 +48,14 @@ def registration_page(request):
     form = StudentRegistrationForm()
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
 
-def edit_page(request):
-    students = Student.objects.all()
+def edit_page(request, id):
+    try:
+        student = Student.objects.get(id=id)
+    except Student.DoesNotExist:
+        raise Http404('Student not found')
     display_success = False
     if request.method == "POST":
-        form = StudentEditForm(request.POST)
+        form = StudentEditForm(request.POST, instance=student)
         if form.is_valid():
             first_name = request.POST.get('first_name', "")
             last_name = request.POST.get('last_name', "")
@@ -59,7 +63,13 @@ def edit_page(request):
             gender = request.POST.get('gender', "")
             form = form.save()
             display_success = True
-    return render(request, 'edit_page.html',{'students': students, 'display_success': display_success})
+    form = StudentEditForm(initial={
+            'first_name': student.first_name,
+            'last_name': student.last_name,
+            'date_of_birth': student.date_of_birth,
+            'gender': student.gender
+            })
+    return render(request, 'edit_page.html',{'student': student, 'form': form, 'display_success': display_success})
 
 
 

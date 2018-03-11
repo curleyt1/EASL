@@ -46,20 +46,22 @@
 
 {% for action in actions.reverse %}
   <div class="text-center">
-    <div class="col-md-6" style="font-size: 18px">
-        {% if action.action == 'P' %}
-          {{action.get_action_display}}
-          <span class="glyphicon glyphicon-star"></span><br>
-        {% elif action.action == 'S' %}
-          {{action.get_action_display}}
-          <span class="glyphicon glyphicon-apple"></span><br>
-        {% elif action.action == 'O' %}
-          {{action.get_action_display}}
-          <span class="glyphicon glyphicon-tree-deciduous"></span><br>
-        {% endif %}
-    </div>
-    <div class="col-md-6" style="font-size: 18px">
-        {{ action.time }}
+    <div class="row">
+      <div class="col-md-6" style="font-size: 18px">
+          {% if action.action == 'P' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-star"></span><br>
+          {% elif action.action == 'S' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-apple"></span><br>
+          {% elif action.action == 'O' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+          {% endif %}
+      </div>
+      <div class="col-md-6" style="font-size: 18px">
+          {{ action.time }}
+      </div>
     </div>
   </div>
 {% endfor %}

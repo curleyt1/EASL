@@ -20,7 +20,10 @@
 {% endif %}
 
 <div class="page-header">
-  <h1 class="text-center">eASL Edit Student Profile</h1>
+  <h1 class="text-center">
+    <a class="btn btn-default" href="{% url 'student_detail' student.id %}";>Go Back</a>
+    Edit Profile
+  </h1>
 </div>
 
 <div id='form'>
@@ -29,12 +32,6 @@
     {{ form.as_p }}
     <input class="btn btn-default" type="submit" value="Save"/>
   </form>
-  <a class="btn btn-danger" onclick="gotoDelete()">Delete Profile</a>
+  <a class="btn btn-danger" href="{% url 'delete_student' student.id %}";>Delete Profile</a>
 </div>
-
-<script>
-  function gotoDelete(){
-    window.location.href = '{% url 'delete_student' student.id %}';
-  }
-</script>
 {% endblock %}

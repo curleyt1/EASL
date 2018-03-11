@@ -13,14 +13,11 @@
     {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
     <small>{{ student.age }} years old</small>
     <small>{{ student.gender }}</small>
-    <a class="btn btn-default" onclick = "gotoEdit()" style="margin-left:20px;">Edit Info</a>
+      <a class="btn btn-default" href="{% url 'edit_page' student.id %}"; style="margin-left:20px;">
+        Edit Info
+      </a>
   </h3>
 </div>
-<script>
-  function gotoEdit(){
-    window.location.href = '{% url 'edit_page' student.id %}';
-  }
-</script>
 
 <div class="text-center">
   {% buttons %}

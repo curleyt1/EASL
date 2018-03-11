@@ -22,12 +22,9 @@ Please select a student to start:
 	</select>
 </div>
 <a class="btn btn-primary" onclick = "gotoStudent()" style="margin-top:5px;">Log In</a>
-<a class="btn btn-default" onclick = "gotoRegistration()" style="margin-top:5px;">New Student</a>
+<a class="btn btn-default" href="{% url 'registration_page' %}"; style="margin-top:5px;">New Student</a>
 
 <script>
-	function gotoRegistration(){
-		window.location.href = '{% url 'registration_page' %}';
-	}
 	function gotoStudent(){
 		var student_id = document.getElementById("studentDropDown").value;
 		var url = '{% url 'student_detail' 999 %}'.replace (999, student_id);

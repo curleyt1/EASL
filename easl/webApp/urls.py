@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'edit_page/(\d+)/', views.edit_page, name='edit_page'),
     url(r'^delete/(\d+)/', views.delete_student, name='delete_student'),
     url(r'^actions/$', views.action_log, name='action_log'),
+    url(r'^actions/(\d+)/', views.student_action_log, name='student_action_log'),
     url(r'^directory/$', views.directory, name='directory'),
 ]

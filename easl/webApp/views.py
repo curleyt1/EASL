@@ -23,6 +23,14 @@ def action_log(request):
     actions = Action.objects.all()
     return render(request, 'action_log.html', {'actions': actions})
 
+def student_action_log(request, id):
+    try:
+        student = Student.objects.get(id=id)
+    except Student.DoesNotExist:
+        raise Http404('Student not found')
+    actions = Action.objects.filter(student=student)
+    return render(request, 'action_log.html', {'actions': actions})
+
 def student_detail(request, id):
     try:
         student = Student.objects.get(id=id)
@@ -30,8 +38,6 @@ def student_detail(request, id):
         raise Http404('Student not found')
     print('puttingactions')
     actions = Action.objects.filter(student=student)
-    print(actions)
-    print('done')
     return render(request, 'student_detail.html', {'student': student, 'actions': actions})
 
 def registration_page(request):

@@ -37,7 +37,9 @@ def student_detail(request, id):
     except Student.DoesNotExist:
         raise Http404('Student not found')
     print('puttingactions')
-    actions = Action.objects.filter(student=student)
+    today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+    today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+    actions = Action.objects.filter(student=student, time__range=(today_min, today_max))
     return render(request, 'student_detail.html', {'student': student, 'actions': actions})
 
 def registration_page(request):
@@ -83,7 +85,9 @@ def save_action(request, id, action_code):
     except Student.DoesNotExist:
         raise Http404('Student not found')
     action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
-    actions = Action.objects.filter(student=acting_student)
+    today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+    today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+    actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))
     return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
 
 # TODO: re-create as a post form to validate with CSRF

@@ -40,14 +40,14 @@
 </div>
 
 <div class="page-header">
-  <h3 class="text-center"> Today's Actions
+  <h3 class="text-center"> Today's Timeline
     <a class="btn btn-default" href="{% url 'student_action_log' student.id %}";>
       View {{ student.first_name|capfirst }}'s Action Log
     </a>
   </h3>
 </div>
 
-{% for action in actions %}
+{% for action in actions.reverse %}
   <div class="text-center">
     <div class="col-md-6">
         {{ action.get_action_display }}

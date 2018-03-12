@@ -32,6 +32,20 @@
     {{ form.as_p }}
     <input class="btn btn-default" type="submit" value="Save"/>
   </form>
-  <a class="btn btn-danger" href="{% url 'delete_student' student.id %}";>Delete Profile</a>
+  <a class="btn btn-danger" onclick="showDeletion()";>Delete Profile</a>
+  <div id = "Deletion" style="visibility:hidden; display:none;">
+    <p>Deleting a student's profile will clear all of their data and actions.</p>
+    <a class="btn btn-danger" href="{% url 'delete_student' student.id %}";>Confirm Deletion of Profile</a>
+    <a class="btn btn-default" onclick="showDeletion()";>Cancel</a>
+  </div>
 </div>
+
+<script>
+  function showDeletion() {
+    el = document.getElementById("Deletion");
+    el.style.display = (el.style.visibility == "visible") ? "none" : "block";
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+</script>
+
 {% endblock %}

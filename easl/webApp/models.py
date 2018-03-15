@@ -36,3 +36,11 @@ class Action(models.Model):
 
     class Meta:
         ordering = ['-time']
+
+class Parent(models.Model):
+    first_name = models.CharField(max_length = 50)
+    last_name = models.CharField(max_length = 50)
+
+    class Meta:
+        unique_together = [('first_name', 'last_name')]
+        ordering = ['last_name']

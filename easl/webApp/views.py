@@ -10,6 +10,7 @@ from .forms import StudentEditForm
 
 from .models import Student
 from .models import Action
+from .models import Parent
 
 def home(request):
     students = Student.objects.all()
@@ -22,6 +23,12 @@ def directory(request):
 def action_log(request):
     actions = Action.objects.all()
     return render(request, 'action_log.html', {'actions': actions})
+
+
+def parent_page(request):
+    parents = Parent.objects.all()
+    return render(request, 'parent_page.html', {'parents': parents})
+
 
 def student_action_log(request, id):
     try:

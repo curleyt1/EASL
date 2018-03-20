@@ -38,8 +38,8 @@
     <h4>Bathroom</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'C' %}";>
-      <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
-      <h4>Call Home</h4>
+    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <h4>Call Home</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'N' %}";>
     <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
@@ -72,6 +72,18 @@
             {{action.get_action_display}}
             <span class="glyphicon glyphicon-apple"></span><br>
           {% elif action.action == 'O' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+          {% elif action.action == 'B' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+          {% elif action.action == 'C' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+          {% elif action.action == 'N' %}
+            {{action.get_action_display}}
+            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+          {% elif action.action == 'R' %}
             {{action.get_action_display}}
             <span class="glyphicon glyphicon-tree-deciduous"></span><br>
           {% endif %}

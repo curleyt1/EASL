@@ -13,6 +13,10 @@ ACTION_CHOICES = (
 ('S'),
 ('P'),
 ('O'),
+('B'),
+('C'),
+('N'),
+('R'),
 )
 
 class StudentSelectionForm(ModelForm):

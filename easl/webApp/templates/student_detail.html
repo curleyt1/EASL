@@ -33,6 +33,23 @@
     <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
     <h4>Outside</h4>
   </a>
+  <a class="btn btn-primary" href="{% url 'save_action' student.id 'B' %}";>
+    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <h4>Bathroom</h4>
+  </a>
+  <a class="btn btn-primary" href="{% url 'save_action' student.id 'C' %}";>
+      <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+      <h4>Call Home</h4>
+  </a>
+  <a class="btn btn-primary" href="{% url 'save_action' student.id 'N' %}";>
+    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <h4>Nurse</h4>
+  </a>
+  <a class="btn btn-primary" href="{% url 'save_action' student.id 'R' %}";>
+    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <h4>Read</h4>
+  </a>
+
   {% endbuttons %}
 </div>
 

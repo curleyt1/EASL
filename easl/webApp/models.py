@@ -29,7 +29,7 @@ class Student(models.Model):
         ordering = ['last_name']
 
 class Action(models.Model):
-    ACTION_CHOICES = [('S', 'Snack'), ('P', 'Play'), ('O', 'Outside')]
+    ACTION_CHOICES = [('S', 'Snack'), ('P', 'Play'), ('O', 'Outside'), ('B', 'Bathroom'), ('C', 'CallHome'), ('N', 'Nurse'), ('R', 'Read')]
     time = models.DateTimeField()
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     student = models.ForeignKey('Student', on_delete=models.CASCADE)

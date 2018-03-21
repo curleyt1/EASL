@@ -34,19 +34,19 @@
     <h4>Outside</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'B' %}";>
-    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <span class="glyphicon glyphicon-book" style="font-size: 64px"></span><br>
     <h4>Bathroom</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'C' %}";>
-    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <span class="glyphicon glyphicon-earphone" style="font-size: 64px"></span><br>
     <h4>Call Home</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'N' %}";>
-    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <span class="glyphicon glyphicon-plus" style="font-size: 64px"></span><br>
     <h4>Nurse</h4>
   </a>
   <a class="btn btn-primary" href="{% url 'save_action' student.id 'R' %}";>
-    <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+    <span class="glyphicon glyphicon-book" style="font-size: 64px"></span><br>
     <h4>Read</h4>
   </a>
 
@@ -79,13 +79,13 @@
             <span class="glyphicon glyphicon-tree-deciduous"></span><br>
           {% elif action.action == 'C' %}
             {{action.get_action_display}}
-            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+            <span class="glyphicon glyphicon-earphone"></span><br>
           {% elif action.action == 'N' %}
             {{action.get_action_display}}
-            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+            <span class="glyphicon glyphicon-plus"></span><br>
           {% elif action.action == 'R' %}
             {{action.get_action_display}}
-            <span class="glyphicon glyphicon-tree-deciduous"></span><br>
+            <span class="glyphicon glyphicon-book"></span><br>
           {% endif %}
       </div>
       <div class="col-md-6" style="font-size: 18px">

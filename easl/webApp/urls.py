@@ -4,13 +4,14 @@ from webApp import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^login/$', login, name='login'),
-    url(r'^logout/$', views.logout_page, name='logout_page'),
+    # url(r'^login/$', login, name='login'),
+    # url(r'^logout/$', views.logout_page, name='logout_page'),
     url(r'^about/$', views.AboutPageView.as_view()),
-    url(r'^register/$', views.register),
-    url(r'^register/success/$', views.register_success, name='register_success'),
+    # url(r'^register/$', views.register),
+    # url(r'^register/success/$', views.register_success, name='register_success'),
     url(r'^student/(\d+)/([A-Z])/', views.save_action, name='save_action'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),
+    url(r'registration_page', views.registration_page, name='registration_page'),
     url(r'parent_page', views.parent_page, name='parent_page'),
     url(r'edit_page/(\d+)/', views.edit_page, name='edit_page'),
     url(r'^delete/(\d+)/', views.delete_student, name='delete_student'),

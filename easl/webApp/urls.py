@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.views import login
+from django.contrib.auth import views as auth_views
 from webApp import views
 
 urlpatterns = [
@@ -9,6 +10,8 @@ urlpatterns = [
     url(r'^about/$', views.AboutPageView.as_view()),
     # url(r'^register/$', views.register),
     # url(r'^register/success/$', views.register_success, name='register_success'),
+    url(r'parent_login', auth_views.login, {'template_name': 'registration/parent_login.html'}),
+    url(r'teacher_login', auth_views.login, {'template_name': 'registration/teacher_login.html'}),
     url(r'^student/(\d+)/([A-Z])/', views.save_action, name='save_action'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),
     url(r'registration_page', views.registration_page, name='registration_page'),

@@ -10,7 +10,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils import timezone
-
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
 from webApp.forms import *
 
 from .models import Student
@@ -59,6 +60,12 @@ from .models import Parent
 def home(request):
     students = Student.objects.all()
     return render(request, 'start_page.html', {'students': students})
+
+def parent_login(request):
+    return render(request, 'registration/parent_login.html')
+
+def teacher_login(request):
+    return render(request, 'registration/teacher_login.html')
 
 def directory(request):
     students = Student.objects.all()

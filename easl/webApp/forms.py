@@ -46,21 +46,23 @@ ACTION_CHOICES = (
 # from django.contrib.auth.models import User
 
 class ParentRegistrationForm(UserCreationForm):
+    username = forms.CharField(max_length=40)
     email = forms.EmailField(max_length=254, help_text=None)
-    password1 = forms.EmailField(max_length=39, help_text=None)
-    password2 = forms.EmailField(max_length=39, help_text=None)
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', )
+        fields = ('username','email', 'password1', 'password2', )
 
 class TeacherRegistrationForm(UserCreationForm):
+    username = forms.CharField(max_length=40)
     email = forms.EmailField(max_length=254, help_text=None)
-    password1 = forms.EmailField(max_length=39, help_text=None)
-    password2 = forms.EmailField(max_length=39, help_text=None)
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', )
+        fields = ('username', 'email', 'password1', 'password2', )
 
 class StudentSelectionForm(ModelForm):
     student = forms.ModelMultipleChoiceField(queryset=Student.objects.all())

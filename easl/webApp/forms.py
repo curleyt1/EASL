@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Student
 from .models import Action
 from django.contrib.auth.models import User
-
+from django.contrib.auth.forms import UserCreationForm
 
 GENDER_CHOICES = (
     ('M'),
@@ -44,6 +44,23 @@ ACTION_CHOICES = (
 #         return self.cleaned_data
 #
 # from django.contrib.auth.models import User
+
+class ParentRegistrationForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text=None)
+    password1 = forms.EmailField(max_length=39, help_text=None)
+    password2 = forms.EmailField(max_length=39, help_text=None)
+
+    class Meta:
+        model = User
+        fields = ('email', 'password1', 'password2', )
+
+class TeacherRegistrationForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text=None)
+    password1 = forms.EmailField(max_length=39, help_text=None)
+    password2 = forms.EmailField(max_length=39, help_text=None)
+    class Meta:
+        model = User
+        fields = ('email', 'password1', 'password2', )
 
 class StudentSelectionForm(ModelForm):
     student = forms.ModelMultipleChoiceField(queryset=Student.objects.all())

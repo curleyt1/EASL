@@ -12,7 +12,12 @@ from django.template import RequestContext
 from django.utils import timezone
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
-from webApp.forms import *
+from .forms import ParentRegistrationForm
+from .forms import TeacherRegistrationForm
+from .forms import StudentEditForm
+from .forms import StudentSelectionForm
+from .forms import StudentRegistrationForm
+
 
 from .models import Student
 from .models import Action
@@ -113,6 +118,41 @@ def registration_page(request):
             display_success = True
     form = StudentRegistrationForm()
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
+
+def parent_registration(request):
+    if request.method == 'POST':
+        form = ParentRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'registration/parent_registration.html', {'form': form})
+    else:
+        form = ParentRegistrationForm()
+    return render(request, 'registration/parent_registration.html', {'form': form})
+
+def teacher_registration(request):
+    if request.method == 'POST':
+        form = TeacherRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'registration/teacher_registration.html', {'form': form})
+    else:
+        form = TeacherRegistrationForm()
+    return render(request, 'registration/teacher_registration.html', {'form': form})
+
+
+
+
+
+
+
 
 def edit_page(request, id):
     try:

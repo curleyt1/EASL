@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^registration_page', views.registration_page, name='registration_page'),
     url(r'^parent_registration_page', views.parent_registration, name ='registration/parent_registration'),
     url(r'^teacher_registration_page', views.teacher_registration, name='registration/steacher_registration'),
+    url(r'user_profile', views.user_profile, name='user_profile'),
     url(r'parent_page', views.parent_page, name='parent_page'),
     url(r'edit_page/(\d+)/', views.edit_page, name='edit_page'),
     url(r'^delete/(\d+)/', views.delete_student, name='delete_student'),

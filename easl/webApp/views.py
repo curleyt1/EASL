@@ -119,6 +119,9 @@ def registration_page(request):
     form = StudentRegistrationForm()
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
 
+def user_profile(request):
+    return render(request, 'user_profile.html')
+
 def parent_registration(request):
     if request.method == 'POST':
         form = ParentRegistrationForm(request.POST)

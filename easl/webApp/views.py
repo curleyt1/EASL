@@ -72,8 +72,8 @@ def parent_login(request):
     if request.method == 'POST':
         form = ParentLoginForm(request.POST)
         if form.is_valid():
-            form = form.save(ModelForm)
-    form = ParentLoginForm(ModelForm)
+            form = form.save()
+    form = ParentLoginForm()
     return render(request, 'registration/parent_login.html', {'form': form })
 
 def teacher_login(request):

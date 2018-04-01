@@ -79,7 +79,7 @@ def TeacherLoginForm(ModelForm):
         model = Teacher
         fields = ('email', 'password1', 'password2', )
 
-def ParentLoginForm(ModelForm):
+class ParentLoginForm(ModelForm):
     email = forms.EmailField(max_length=254, help_text=None)
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())

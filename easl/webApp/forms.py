@@ -5,6 +5,8 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from .models import Student
 from .models import Action
+from .models import Teacher
+from .models import Parent
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -52,24 +54,22 @@ ACCOUNT_TYPE=(
 #
 # from django.contrib.auth.models import User
 
-class ParentRegistrationForm(UserCreationForm):
-    username = forms.CharField(max_length=40)
+class ParentRegistrationForm(ModelForm):
     email = forms.EmailField(max_length=254, help_text=None)
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
-        model = User
-        fields = ('username','email', 'password1', 'password2' )
+        model = Parent
+        fields = ('email', 'password1', 'password2' )
 
-class TeacherRegistrationForm(UserCreationForm):
-    username = forms.CharField(max_length=40)
+class TeacherRegistrationForm(ModelForm):
     email = forms.EmailField(max_length=254, help_text=None)
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2', )
+        model = Teacher
+        fields = ('email', 'password1', 'password2', )
 
 class StudentSelectionForm(ModelForm):
     student = forms.ModelMultipleChoiceField(queryset=Student.objects.all())

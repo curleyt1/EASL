@@ -36,3 +36,21 @@ class Action(models.Model):
 
     class Meta:
         ordering = ['-time']
+
+class Parent(models.Model):
+    email = models.EmailField(max_length=50)
+    password1 = models.CharField(max_length=40)
+    password2 = models.CharField(max_length=40)
+
+    class Meta:
+        unique_together = [('email', 'password1', 'password2')]
+        ordering = ['email']
+
+class Teacher(models.Model):
+    email = models.EmailField(max_length=50)
+    password1 = models.CharField(max_length=40)
+    password2 = models.CharField(max_length=40)
+
+    class Meta:
+        unique_together = [('email', 'password1', 'password2')]
+        ordering = ['email']

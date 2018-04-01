@@ -17,11 +17,11 @@ from .forms import TeacherRegistrationForm
 from .forms import StudentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
+from django.contrib.auth.models import Group
 
 
 from .models import Student
 from .models import Action
-from .models import Parent
 
 # @csrf_protect
 # def register(request):
@@ -120,7 +120,7 @@ def registration_page(request):
     return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
 
 def user_profile(request):
-    return render(request, 'user_profile.html')
+    return render(request, 'parent_page.html')
 
 def parent_registration(request):
     if request.method == 'POST':

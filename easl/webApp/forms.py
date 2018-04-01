@@ -14,14 +14,21 @@ GENDER_CHOICES = (
 )
 
 ACTION_CHOICES = (
-('S'),
-('P'),
-('O'),
-('B'),
-('C'),
-('N'),
-('R'),
+    ('S'),
+    ('P'),
+    ('O'),
+    ('B'),
+    ('C'),
+    ('N'),
+    ('R'),
 )
+
+ACCOUNT_TYPE=(
+    ('Teacher'),
+    ('Parent'),
+)
+
+
 #
 # class RegistrationForm(forms.Form):
 #
@@ -53,7 +60,7 @@ class ParentRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username','email', 'password1', 'password2', )
+        fields = ('username','email', 'password1', 'password2' )
 
 class TeacherRegistrationForm(UserCreationForm):
     username = forms.CharField(max_length=40)

@@ -71,6 +71,23 @@ class TeacherRegistrationForm(ModelForm):
         model = Teacher
         fields = ('email', 'password1', 'password2', )
 
+def TeacherLoginForm(ModelForm):
+    email = forms.EmailField(max_length=254, help_text=None)
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = Teacher
+        fields = ('email', 'password1', 'password2', )
+
+def ParentLoginForm(ModelForm):
+    email = forms.EmailField(max_length=254, help_text=None)
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = Parent
+        fields = ('email', 'password1', 'password2', )
+
+
 class StudentSelectionForm(ModelForm):
     student = forms.ModelMultipleChoiceField(queryset=Student.objects.all())
 

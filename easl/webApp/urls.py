@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^about/$', views.AboutPageView.as_view()),
     # url(r'^register/$', views.register),
     # url(r'^register/success/$', views.register_success, name='register_success'),
-    url(r'^parent_login', auth_views.login, {'template_name': 'registration/parent_login.html'}),
+    url(r'^parent_login', views.parent_login, name='parent_login'),
     url(r'^teacher_login', auth_views.login, {'template_name': 'registration/teacher_login.html'}),
     url(r'^student/(\d+)/([A-Z])/', views.save_action, name='save_action'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),

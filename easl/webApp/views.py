@@ -11,12 +11,14 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.utils import timezone
 from django.contrib.auth import authenticate
+from django.forms import ModelForm
 from django.contrib.auth import login
 from .forms import ParentRegistrationForm
 from .forms import TeacherRegistrationForm
 from .forms import StudentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
+from .forms import ParentLoginForm
 from django.contrib.auth.models import Group
 
 
@@ -67,7 +69,12 @@ def home(request):
     return render(request, 'start_page.html', {'students': students})
 
 def parent_login(request):
-    return render(request, 'registration/parent_login.html')
+    if request.method == 'POST':
+        form = ParentLoginForm(request.POST)
+        if form.is_valid():
+            form = form.save(ModelForm)
+    form = ParentLoginForm(ModelForm)
+    return render(request, 'registration/parent_login.html', {'form': form })
 
 def teacher_login(request):
     return render(request, 'registration/teacher_login.html')
@@ -81,8 +88,8 @@ def action_log(request):
     return render(request, 'action_log.html', {'actions': actions})
 
 
-def parent_page(request):
-    parents = Parent.objects.all()
+def parent_page(request, id):
+    parents = Parent.objects.get(id=id)
     return render(request, 'parent_page.html', {'parents': parents})
 
 
@@ -127,10 +134,6 @@ def parent_registration(request):
         form = ParentRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
             return render(request, 'registration/parent_registration.html', {'form': form})
     else:
         form = ParentRegistrationForm()
@@ -141,20 +144,10 @@ def teacher_registration(request):
         form = TeacherRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
             return render(request, 'registration/teacher_registration.html', {'form': form})
     else:
         form = TeacherRegistrationForm()
     return render(request, 'registration/teacher_registration.html', {'form': form})
-
-
-
-
-
-
 
 
 def edit_page(request, id):

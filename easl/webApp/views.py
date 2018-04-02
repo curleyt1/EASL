@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_protect
@@ -19,54 +19,48 @@ from .forms import StudentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
 from .forms import ParentLoginForm
+from .forms import ParentSignUpForm
+from .forms import TeacherSignUpForm
 from django.contrib.auth.models import Group
 
 
 from .models import Student
 from .models import Action
 
-# @csrf_protect
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             user = User.objects.create_user(
-#             username=form.cleaned_data['username'],
-#             password=form.cleaned_data['password1'],
-#             email=form.cleaned_data['email']
-#             )
-#             return HttpResponseRedirect('/register/success/')
-#     else:
-#         form = RegistrationForm()
-#     variables = RequestContext(request, {
-#     'form': form
-#     })
-#
-#     return render_to_response(
-#     'registration/register.html',
-#     variables,
-#     )
-#
-# def register_success(request):
-#     return render_to_response(
-#     'registration/success.html',
-#     )
-
-# def logout_page(request):
-#     logout(request)
-#     return HttpResponseRedirect('/')
-#
-# @login_required
-# def home(request):
-#     students = Student.objects.all()
-#     return render_to_response(
-#     'start_page.html',
-#     { 'user': request.user, 'students': students }
-#     )
-
 def home(request):
     students = Student.objects.all()
     return render(request, 'start_page.html', {'students': students})
+
+
+def parent_signup(request):
+    if request.method == 'POST':
+        form = ParentSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = ParentSignUpForm()
+    return render(request, 'parent_signup.html', {'form': form})
+
+
+def teacher_signup(request):
+    if request.method == 'POST':
+        form = TeacherSignUpForm(request.POST)
+        if form.is_valid():
+            form.is_staff = True
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = TeacherSignUpForm()
+    return render(request, 'teacher_signup.html', {'form': form})
 
 def parent_login(request):
     if request.method == 'POST':
@@ -87,11 +81,9 @@ def action_log(request):
     actions = Action.objects.all()
     return render(request, 'action_log.html', {'actions': actions})
 
-
 def parent_page(request, id):
     parents = Parent.objects.get(id=id)
     return render(request, 'parent_page.html', {'parents': parents})
-
 
 def student_action_log(request, id):
     try:
@@ -182,6 +174,7 @@ def save_action(request, id, action_code):
     today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
     today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
     actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))
+
     return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
 
 # TODO: re-create as a post form to validate with CSRF

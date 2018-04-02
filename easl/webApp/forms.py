@@ -110,3 +110,22 @@ class StudentEditForm(ModelForm):
     last_name = forms.CharField(max_length=50)
     date_of_birth = forms.DateField()
     gender = forms.Select(choices=GENDER_CHOICES)
+
+class ParentSignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+class TeacherSignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    is_staff = forms.BooleanField(initial=True, disabled=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'is_staff', 'email', 'password1', 'password2', )

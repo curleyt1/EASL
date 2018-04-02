@@ -1,0 +1,17 @@
+{% extends "base_accounts.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="text-center"> Unauthorized </h1>
+</div>
+
+<div class="text-center">
+  <div class="lead">
+    Your Account does not have the permissions to view this page.
+  </div>
+  <div class="lead">
+    <a href="{% url 'home' %}">Return Home</a>
+  </div>
+</div>
+
+{% endblock %}

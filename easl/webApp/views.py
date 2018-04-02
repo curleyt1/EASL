@@ -84,8 +84,11 @@ def directory(request):
 
 def action_log(request):
     if request.user.is_authenticated:
-        actions = Action.objects.all()
-        return render(request, 'action_log.html', {'actions': actions})
+        if request.user.is_staff:
+            actions = Action.objects.all()
+            return render(request, 'action_log.html', {'actions': actions})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
@@ -95,42 +98,51 @@ def parent_page(request, id):
 
 def student_action_log(request, id):
     if request.user.is_authenticated:
-        try:
-            student = Student.objects.get(id=id)
-        except Student.DoesNotExist:
-            raise Http404('Student not found')
-        actions = Action.objects.filter(student=student)
-        return render(request, 'action_log.html', {'actions': actions})
+        if request.user.is_staff:
+            try:
+                student = Student.objects.get(id=id)
+            except Student.DoesNotExist:
+                raise Http404('Student not found')
+            actions = Action.objects.filter(student=student)
+            return render(request, 'action_log.html', {'actions': actions})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
 def student_detail(request, id):
     if request.user.is_authenticated:
-        try:
-            student = Student.objects.get(id=id)
-        except Student.DoesNotExist:
-            raise Http404('Student not found')
-        today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-        today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-        actions = Action.objects.filter(student=student, time__range=(today_min, today_max))
-        return render(request, 'student_detail.html', {'student': student, 'actions': actions})
+        if request.user.is_staff:
+            try:
+                student = Student.objects.get(id=id)
+            except Student.DoesNotExist:
+                raise Http404('Student not found')
+            today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+            today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+            actions = Action.objects.filter(student=student, time__range=(today_min, today_max))
+            return render(request, 'student_detail.html', {'student': student, 'actions': actions})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
 def registration_page(request):
     if request.user.is_authenticated:
-        display_success = False
-        if request.method == 'POST':
-            form = StudentRegistrationForm(request.POST)
-            if form.is_valid():
-                first_name = request.POST.get('first_name', "")
-                last_name = request.POST.get('last_name', "")
-                date_of_birth = request.POST.get('date_of_birth', "")
-                gender = request.POST.get('gender', "")
-                form = form.save()
-                display_success = True
-        form = StudentRegistrationForm()
-        return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
+        if request.user.is_staff:
+            display_success = False
+            if request.method == 'POST':
+                form = StudentRegistrationForm(request.POST)
+                if form.is_valid():
+                    first_name = request.POST.get('first_name', "")
+                    last_name = request.POST.get('last_name', "")
+                    date_of_birth = request.POST.get('date_of_birth', "")
+                    gender = request.POST.get('gender', "")
+                    form = form.save()
+                    display_success = True
+            form = StudentRegistrationForm()
+            return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
@@ -160,57 +172,69 @@ def teacher_registration(request):
 
 def edit_page(request, id):
     if request.user.is_authenticated:
-        try:
-            student = Student.objects.get(id=id)
-        except Student.DoesNotExist:
-            raise Http404('Student not found')
-        display_success = False
-        if request.method == "POST":
-            form = StudentEditForm(request.POST, instance=student)
-            if form.is_valid():
-                first_name = request.POST.get('first_name', "")
-                last_name = request.POST.get('last_name', "")
-                date_of_birth = request.POST.get('date_of_birth', "")
-                gender = request.POST.get('gender', "")
-                form = form.save()
-                display_success = True
-        form = StudentEditForm(initial={
-                'first_name': student.first_name,
-                'last_name': student.last_name,
-                'date_of_birth': student.date_of_birth,
-                'gender': student.gender
-                })
-        return render(request, 'edit_page.html',{'student': student, 'form': form, 'display_success': display_success})
+        if request.user.is_staff:
+            try:
+                student = Student.objects.get(id=id)
+            except Student.DoesNotExist:
+                raise Http404('Student not found')
+            display_success = False
+            if request.method == "POST":
+                form = StudentEditForm(request.POST, instance=student)
+                if form.is_valid():
+                    first_name = request.POST.get('first_name', "")
+                    last_name = request.POST.get('last_name', "")
+                    date_of_birth = request.POST.get('date_of_birth', "")
+                    gender = request.POST.get('gender', "")
+                    form = form.save()
+                    display_success = True
+            form = StudentEditForm(initial={
+                    'first_name': student.first_name,
+                    'last_name': student.last_name,
+                    'date_of_birth': student.date_of_birth,
+                    'gender': student.gender
+                    })
+            return render(request, 'edit_page.html',{'student': student, 'form': form, 'display_success': display_success})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
 def save_action(request, id, action_code):
     if request.user.is_authenticated:
-        try:
-            acting_student = Student.objects.get(id=id)
-        except Student.DoesNotExist:
-            raise Http404('Student not found')
-        action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
-        today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-        today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-        actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))
+        if request.user.is_staff:
+            try:
+                acting_student = Student.objects.get(id=id)
+            except Student.DoesNotExist:
+                raise Http404('Student not found')
+            action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
+            today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+            today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+            actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))
 
-        return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
+            return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
 
 # TODO: re-create as a post form to validate with CSRF
 def delete_student(request, id):
     if request.user.is_authenticated:
-        try:
-            student = Student.objects.get(id=id)
-            student.delete()
-        except Student.DoesNotExist:
-            raise Http404('Student not found')
-        students = Student.objects.all()
-        return render(request, 'start_page.html', {'students': students})
+        if request.user.is_staff:
+            try:
+                student = Student.objects.get(id=id)
+                student.delete()
+            except Student.DoesNotExist:
+                raise Http404('Student not found')
+            students = Student.objects.all()
+            return render(request, 'start_page.html', {'students': students})
+        else:
+            return redirect('/unauth')
     else:
         return redirect('/accounts/login')
+
+class unauthorized(TemplateView):
+    template_name = "unauthorized.html"
 
 class AboutPageView(TemplateView):
     template_name = "about.html"

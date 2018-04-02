@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^actions/$', views.action_log, name='action_log'),
     url(r'^actions/(\d+)/', views.student_action_log, name='student_action_log'),
     url(r'^directory/$', views.directory, name='directory'),
+    url(r'^unauth/$', views.unauthorized.as_view()),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

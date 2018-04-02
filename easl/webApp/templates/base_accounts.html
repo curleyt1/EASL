@@ -1,0 +1,19 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+{# Load Static images and JS #}
+{% load static %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name=viewport content='width=400'>
+    <title>EASL Accounts</title>
+  </head>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

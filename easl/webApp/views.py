@@ -211,7 +211,8 @@ def save_action(request, id, action_code):
             today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
             actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))
 
-            return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
+            #return render(request, 'student_detail.html', {'student': acting_student, 'actions': actions})
+            return redirect('/student/' + str(id))
         else:
             return redirect('/unauth')
     else:

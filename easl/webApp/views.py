@@ -1,6 +1,7 @@
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView
@@ -22,6 +23,9 @@ from .forms import StudentRegistrationForm
 from .forms import ParentSignUpForm
 from .forms import TeacherSignUpForm
 from django.contrib.auth.models import Group
+from django.shortcuts import get_object_or_404
+
+import pdb
 
 from .models import Student
 from .models import Action
@@ -120,13 +124,18 @@ def registration_page(request):
             display_success = False
             if request.method == 'POST':
                 form = StudentRegistrationForm(request.POST)
+                parent = User.objects.all()
+                selected_parent = get_object_or_404(parent, pk=request.POST.get('parent', ""))
                 if form.is_valid():
                     first_name = request.POST.get('first_name', "")
                     last_name = request.POST.get('last_name', "")
                     date_of_birth = request.POST.get('date_of_birth', "")
                     gender = request.POST.get('gender', "")
+                    parent = selected_parent
                     form = form.save()
                     display_success = True
+                else:
+                    print(form.errors)
             form = StudentRegistrationForm()
             return render(request, 'registration_page.html', {'form': form, 'display_success': display_success})
         else:

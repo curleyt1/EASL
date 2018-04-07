@@ -5,6 +5,7 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from .models import Student
 from .models import Action
+from django.conf import settings
 # from .models import Teacher
 # from .models import Parent
 from django.contrib.auth.models import User
@@ -25,6 +26,8 @@ ACTION_CHOICES = (
     ('R'),
 )
 
+PARENT_CHOICES = User.objects.all()
+
 ACCOUNT_TYPE=(
     ('Teacher'),
     ('Parent'),
@@ -36,13 +39,13 @@ class StudentSelectionForm(ModelForm):
 class StudentRegistrationForm(ModelForm):
     class Meta:
         model = Student
-        fields=('first_name', 'last_name', 'date_of_birth','gender', 'parent')
+        fields=('first_name', 'last_name', 'date_of_birth', 'gender', 'parent')
 
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
-    date_of_birth = forms.DateField()
+    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
     gender = forms.Select(choices=GENDER_CHOICES)
-    parent = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+    parent = forms.Select(choices = User.objects.all())
 
 class StudentEditForm(ModelForm):
     class Meta:

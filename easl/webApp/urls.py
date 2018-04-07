@@ -7,13 +7,9 @@ from webApp import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^about/$', views.AboutPageView.as_view()),
-    url(r'^parent_login', views.parent_login, name='parent_login'),
-    url(r'^teacher_login', auth_views.login, {'template_name': 'registration/teacher_login.html'}),
     url(r'^student/(\d+)/([A-Z])/', views.save_action, name='save_action'),
     url(r'^student/(\d+)/', views.student_detail, name='student_detail'),
     url(r'^registration_page', views.registration_page, name='registration_page'),
-    url(r'^parent_registration_page', views.parent_registration, name ='registration/parent_registration'),
-    url(r'^teacher_registration_page', views.teacher_registration, name='registration/steacher_registration'),
     url(r'^parent_signup', views.parent_signup, name='parent_signup'),
     url(r'^teacher_signup', views.teacher_signup, name='teacher_signup'),
     url(r'^accounts/profile/', views.user_profile, name='user_profile'),

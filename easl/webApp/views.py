@@ -13,12 +13,12 @@ from django.utils import timezone
 from django.contrib.auth import authenticate
 from django.forms import ModelForm
 from django.contrib.auth import login
-from .forms import ParentRegistrationForm
-from .forms import TeacherRegistrationForm
+# from .forms import ParentRegistrationForm
+# from .forms import TeacherRegistrationForm
 from .forms import StudentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
-from .forms import ParentLoginForm
+# from .forms import ParentLoginForm
 from .forms import ParentSignUpForm
 from .forms import TeacherSignUpForm
 from django.contrib.auth.models import Group
@@ -32,7 +32,6 @@ def home(request):
         return render(request, 'start_page.html', {'students': students})
     else:
         return redirect('/accounts/login')
-
 
 def parent_signup(request):
     if request.method == 'POST':
@@ -63,17 +62,6 @@ def teacher_signup(request):
     else:
         form = TeacherSignUpForm()
     return render(request, 'teacher_signup.html', {'form': form})
-
-def parent_login(request):
-    if request.method == 'POST':
-        form = ParentLoginForm(request.POST)
-        if form.is_valid():
-            form = form.save()
-    form = ParentLoginForm()
-    return render(request, 'registration/parent_login.html', {'form': form })
-
-def teacher_login(request):
-    return render(request, 'registration/teacher_login.html')
 
 def directory(request):
     if request.user.is_authenticated:
@@ -148,27 +136,6 @@ def registration_page(request):
 
 def user_profile(request):
     return render(request, 'parent_page.html')
-
-def parent_registration(request):
-    if request.method == 'POST':
-        form = ParentRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'registration/parent_registration.html', {'form': form})
-    else:
-        form = ParentRegistrationForm()
-    return render(request, 'registration/parent_registration.html', {'form': form})
-
-def teacher_registration(request):
-    if request.method == 'POST':
-        form = TeacherRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'registration/teacher_registration.html', {'form': form})
-    else:
-        form = TeacherRegistrationForm()
-    return render(request, 'registration/teacher_registration.html', {'form': form})
-
 
 def edit_page(request, id):
     if request.user.is_authenticated:

@@ -36,12 +36,13 @@ class StudentSelectionForm(ModelForm):
 class StudentRegistrationForm(ModelForm):
     class Meta:
         model = Student
-        fields=('first_name', 'last_name', 'date_of_birth','gender')
+        fields=('first_name', 'last_name', 'date_of_birth','gender', 'parent')
 
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     date_of_birth = forms.DateField()
     gender = forms.Select(choices=GENDER_CHOICES)
+    parent = forms.ModelMultipleChoiceField(queryset=User.objects.all())
 
 class StudentEditForm(ModelForm):
     class Meta:

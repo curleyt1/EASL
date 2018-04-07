@@ -1,12 +1,15 @@
 from datetime import date
 from datetime import datetime
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')])
+    parent = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     def age(self):
         today = date.today()

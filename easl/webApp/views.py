@@ -14,16 +14,12 @@ from django.utils import timezone
 from django.contrib.auth import authenticate
 from django.forms import ModelForm
 from django.contrib.auth import login
-# from .forms import ParentRegistrationForm
-# from .forms import TeacherRegistrationForm
 from .forms import StudentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
-# from .forms import ParentLoginForm
 from .forms import ParentSignUpForm
 from .forms import TeacherSignUpForm
 from django.contrib.auth.models import Group
-from django.shortcuts import get_object_or_404
 
 import pdb
 
@@ -125,13 +121,12 @@ def registration_page(request):
             if request.method == 'POST':
                 form = StudentRegistrationForm(request.POST)
                 parent = User.objects.all()
-                selected_parent = get_object_or_404(parent, pk=request.POST.get('parent', ""))
                 if form.is_valid():
                     first_name = request.POST.get('first_name', "")
                     last_name = request.POST.get('last_name', "")
                     date_of_birth = request.POST.get('date_of_birth', "")
                     gender = request.POST.get('gender', "")
-                    parent = selected_parent
+                    parent = request.POST.get('parent', "")
                     form = form.save()
                     display_success = True
                 else:

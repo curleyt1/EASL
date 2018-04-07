@@ -9,7 +9,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female')])
-    parent = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     def age(self):
         today = date.today()

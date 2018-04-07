@@ -133,8 +133,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DATE_INPUT_FORMATS = [
 '%Y-%m-%d',      # '2006-10-25'
-'%m/%d/%Y',       # '10/25/2006'
-'%m/%d/%y',       # '10/25/06'
-'%m-%d-%Y',
-'%m-%d-%y'
+'%m/%d/%Y',      # '10/25/2006'
+'%m/%d/%y',      # '10/25/06'
+'%m-%d-%Y',      # '10-25-2006'
+'%m-%d-%y'       # '10-25-06'
 ]

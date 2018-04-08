@@ -78,4 +78,4 @@ class TeacherSignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'is_staff' )
+        fields = ('is_staff', 'username', 'first_name', 'last_name', 'email', 'password1', 'password2', )

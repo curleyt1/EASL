@@ -7,8 +7,16 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %} -->
 {% block content %}
+<style>
+  #timeline{
+    background: #EBEFED;
+  }
+  body{
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
 
+    }
 
+</style>
 <div class="page-header">
   <h3 class="text-center">
     <a class="btn btn-default" href="{% url 'home' %}";>Go Back</a>
@@ -67,7 +75,7 @@
 </div>
 
 {% for action in actions.reverse %}
-  <div class="text-center">
+  <div class="text-center" id=timeline>
     <div class="row">
       <div class="col-md-6" style="font-size: 18px">
           {% if action.action == 'P' %}
@@ -100,7 +108,7 @@
   </div>
 {% endfor %}
 
-<div class="text-center">
+<div class="text-center" id=timeline>
   <small>Icons courtesy of <a href="https://glyphicons.com/">glyphicons.com</a>.</small>
 </div>
 

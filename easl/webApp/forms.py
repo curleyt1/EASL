@@ -72,6 +72,10 @@ class TeacherSignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     is_staff = forms.BooleanField(initial=True, disabled=True)
 
+    def __init__( self, *args, **kwargs ):
+        super(TeacherSignUpForm, self).__init__( *args, **kwargs )
+        self.fields['is_staff'].label = "" # Hide is_staff label.
+
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'is_staff', 'email', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'is_staff' )

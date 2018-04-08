@@ -6,6 +6,7 @@
     border: 1px solid powderblue;
     text-align: center;
   }
+
 </style>
   <h2 class='text-center'>Teacher Sign up</h2>
   <form id=form method="post">
@@ -21,4 +22,10 @@
     {% endfor %}
     <button type="submit">Sign up</button>
   </form>
+
+
+<script>
+    el = document.getElementById("id_is_staff");
+    el.style.visibility = "hidden";
+</script>
 {% endblock %}

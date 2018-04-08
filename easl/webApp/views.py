@@ -21,15 +21,16 @@ from .forms import ParentSignUpForm
 from .forms import TeacherSignUpForm
 from django.contrib.auth.models import Group
 
-import pdb
-
 from .models import Student
 from .models import Action
 
 def home(request):
     if request.user.is_authenticated:
-        students = Student.objects.all()
-        return render(request, 'start_page.html', {'students': students})
+        if request.user.is_staff:
+            students = Student.objects.all()
+            return render(request, 'start_page.html', {'students': students})
+        else:
+            return redirect('/parent_page')
     else:
         return redirect('/accounts/login')
 
@@ -80,17 +81,18 @@ def action_log(request):
     else:
         return redirect('/accounts/login')
 
-def parent_page(request, id):
-    parents = Parent.objects.get(id=id)
-    return render(request, 'parent_page.html', {'parents': parents})
+def parent_page(request):
+    parent = request.user
+    students = Student.objects.filter(parent=parent)
+    return render(request, 'parent_page.html', {'parent': parent, 'students': students})
 
 def student_action_log(request, id):
     if request.user.is_authenticated:
-        if request.user.is_staff:
-            try:
-                student = Student.objects.get(id=id)
-            except Student.DoesNotExist:
-                raise Http404('Student not found')
+        try:
+            student = Student.objects.get(id=id)
+        except Student.DoesNotExist:
+            raise Http404('Student not found')
+        if request.user.is_staff or student.parent == request.user:
             actions = Action.objects.filter(student=student)
             return render(request, 'action_log.html', {'actions': actions})
         else:
@@ -100,11 +102,11 @@ def student_action_log(request, id):
 
 def student_detail(request, id):
     if request.user.is_authenticated:
-        if request.user.is_staff:
-            try:
-                student = Student.objects.get(id=id)
-            except Student.DoesNotExist:
-                raise Http404('Student not found')
+        try:
+            student = Student.objects.get(id=id)
+        except Student.DoesNotExist:
+            raise Http404('Student not found')
+        if request.user.is_staff or student.parent == request.user:
             today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
             today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
             actions = Action.objects.filter(student=student, time__range=(today_min, today_max))

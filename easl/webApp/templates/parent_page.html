@@ -5,4 +5,20 @@
   <h1 class="text-center"> Parent Page </h1>
 </div>
 
+<div class="page-header">
+  <h3 class="text-center">
+    {{ parent.first_name|capfirst }} {{ parent.last_name|capfirst }}
+  </h3>
+</div>
+
+{% for student in students %}
+  <div class="page-header">
+    <h3 class="text-center">
+      <a href="{% url 'student_detail' student.id %}">
+      {{ student.first_name|capfirst }} {{ student.last_name|capfirst }}
+      </a>
+    </h3>
+  </div>
+{% endfor %}
+
 {% endblock %}

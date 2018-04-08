@@ -1,7 +1,19 @@
 {% extends 'base_accounts.html' %}
 
 {% block content %}
-<p>Logged out!</p>
+<style>
+  .jumbotron {
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
+  }
+  body{
+    background: #E7FBFB;
+
+    }
+
+</style>
+<div class='jumbotron text-center'
+<p style="font-family:verdana;">Logged out!</p>
 
 <a href="{% url 'login'%}">Click here to login again.</a>
+</div>
 {% endblock %}

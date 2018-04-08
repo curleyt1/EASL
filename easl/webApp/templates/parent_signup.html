@@ -7,9 +7,16 @@
     border: 5px solid powderblue;
     text-align: center;
   }
+  .jumbotron {
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
+  }
+  body{
+    background: #E7FBFB;
+  }
+
 </style>
 
-  <h2 class='text-center'> Parent Sign up</h2>
+  <h2 class='jumbotron text-center'> Parent Sign up</h2>
   <form id=form method="post">
     <br>
     {% csrf_token %}

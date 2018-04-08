@@ -1,16 +1,21 @@
 {% extends 'base_accounts.html' %}
 
 {% block content %}
+
 <style>
-  body {
-    background-color: lightblue;
+  .jumbotron {
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
   }
+  body{
+    background: #EBEFED;
+
+    }
 
 </style>
 
 <body>
-  <div class="jumbotron text-center" background-color: lightblue >
-  <h2>eASL Login Page</h2>
+  <div class="jumbotron text-center">
+  <img src='/static/images/eASL_logo.png'>
   {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
   {% endif %}
@@ -31,23 +36,28 @@
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
   </div>
+</br>
   <div>
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
   </div>
-
+</br>
   <div>
-    <input type="submit" value="login" />
+    <input class="btn btn-default" type="submit" value="login" />
     <input type="hidden" name="next" value="{{ next }}" />
   </div>
   </form>
 
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <p><a href="{% url 'parent_signup' %}">Parent Registration</a></p>
-  <p><a href="{% url 'teacher_signup' %}">Teacher Registration</a></p>
+</div>
 
-
-
+<div class='footer'>
+  <div class='text-center'>
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    <p><a href="{% url 'parent_signup' %}">Parent Registration</a></p>
+    <p><a href="{% url 'teacher_signup' %}">Teacher Registration</a></p>
   </div>
+</div>
+
+
 </body>
 {% endblock %}

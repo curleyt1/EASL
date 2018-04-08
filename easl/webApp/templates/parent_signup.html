@@ -4,13 +4,14 @@
 
 <style>
   #form{
-    border: 1px solid powderblue;
+    border: 5px solid powderblue;
     text-align: center;
   }
 </style>
 
   <h2 class='text-center'> Parent Sign up</h2>
   <form id=form method="post">
+    <br>
     {% csrf_token %}
     {% for field in form %}
       <p>

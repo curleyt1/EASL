@@ -22,7 +22,7 @@
   }
 
 </style>
-<img class ='logo' src='/static/images/eASL_logo.png' height="150" width="200">
+<img class ='logo' src='/static/images/eASL_logo.png' height="50" width="75">
 
 <div class="jumbotron text-center">
   <h3>
@@ -32,7 +32,8 @@
     <small>{{ student.age }} years old</small>
     <small>{{ student.gender }}</small>
     {% if request.user.is_staff %}
-      <a class="btn btn-primary" href="{% url 'edit_page' student.id %}"; style="margin-left:20px;">
+      <br>
+      <a class="btn btn-primary" href="{% url 'edit_page' student.id %}">
         Edit Info
       </a>
     {% endif %}
@@ -41,31 +42,31 @@
 {% if request.user.is_staff %}
 <div class="text-center">
     {% buttons %}
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'P' %}";>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'P' %}";>
         <span class="glyphicon glyphicon-star" style="font-size: 64px"></span><br>
         <h4>Play</h4>
       </a>
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'S' %}";>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'S' %}";>
         <span class="glyphicon glyphicon-apple" style="font-size: 64px"></span><br>
         <h4>Snack</h4>
       </a>
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'O' %}";>
-        <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px"></span><br>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'O' %}";>
+        <span class="glyphicon glyphicon-tree-deciduous" style="font-size: 64px;"></span><br>
         <h4>Outside</h4>
       </a>
       <!-- <a class="btn btn-primary" href="{% url 'save_action' student.id 'B' %}";>
         <span style="font-size: 64px; background-image: url('../../static/images/toilet.ico'); display:block"></span><br>
         <h4>Bathroom</h4>
       </a> -->
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'C' %}";>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'C' %}";>
         <span class="glyphicon glyphicon-earphone" style="font-size: 64px"></span><br>
-        <h4>Call Home</h4>
+        <h4>Home</h4>
       </a>
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'N' %}";>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'N' %}";>
         <span class="glyphicon glyphicon-plus" style="font-size: 64px"></span><br>
         <h4>Nurse</h4>
       </a>
-      <a class="btn btn-primary" href="{% url 'save_action' student.id 'R' %}";>
+      <a class="btn btn-primary" style="margin-bottom:5px;" href="{% url 'save_action' student.id 'R' %}";>
         <span class="glyphicon glyphicon-book" style="font-size: 64px"></span><br>
         <h4>Read</h4>
       </a>

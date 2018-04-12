@@ -1,3 +1,31 @@
+{% extends "base_accounts.html" %}
+{% block content %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<style>
+  #form{
+    border: 5px solid powderblue;
+    text-align: center;
+  }
+  .jumbotron{
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
+  }
+  body{
+    background: #E7FBFB;
+  }
+  .logo{
+    position: relative;
+    float:left;
+  }
+</style>
+
 <div class ='jumbotron text-center'>
-  Parent Edit Page
+  <h3> Parent Edit Page </h3>
 </div>
+
+
+{% endblock %}

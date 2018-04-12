@@ -23,6 +23,12 @@
   }
 </style>
 
+{% if display_success %}
+  <div class="alert alert-success">
+    <h4 class = "text-center">Success!</h4>
+  </div>
+{% endif %}
+
 <div class ='jumbotron text-center'>
   <h3> Parent Edit Page </h3>
 </div>
@@ -35,5 +41,7 @@
     <input class="btn btn-default" type="submit" value="Save"/>
   </form>
 </div>
+
+<a class="btn btn-primary" href="{% url 'home' %}";>Go Back</a>
 
 {% endblock %}

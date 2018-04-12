@@ -173,19 +173,26 @@ def edit_page(request, id):
     else:
         return redirect('/accounts/login')
 
-def parent_edit_page(request, parent):
-    parent = Student.objects.get(parent=parent)
-    display_success = False
-    if request.method == 'POST':
-        form = ParentEditForm(request.POST, instance=parent)
-        if form.is_valid():
-            parent = request.POST.get('parent', "")
-            form.save()
-            display_success = True
-    form = ParentEditForm(initial={
-        'parent': parent
-    })
-    return render(request, 'parent_edit_page.html', {'parent': parent, 'form': form, 'display_success': display_success})
+def parent_edit_page(request):
+    if request.user.is_authenticated:
+        parent=request.user
+        display_success = False
+        if request.method == 'POST':
+            form = ParentEditForm(request.POST, instance=parent)
+            if form.is_valid():
+                first_name = request.POST.get('first_name', "")
+                last_name = request.POST.get('last_name', "")
+                email = request.POST.get('email', "")
+                form.save()
+                display_success = True
+        form = ParentEditForm(initial={
+            'first_name': parent.first_name,
+            'last_name': parent.last_name,
+            'email': parent.email
+            })
+        return render(request, 'parent_edit_page.html', {'form': form, 'display_success': display_success})
+    else:
+        return redirect('/accounts/login')
 
 def save_action(request, id, action_code):
     if request.user.is_authenticated:

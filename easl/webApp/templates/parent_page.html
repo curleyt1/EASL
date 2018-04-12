@@ -20,6 +20,10 @@
   <h1 class="text-center"> Parent Page </h1>
 </div>
 
+<a class="btn btn-primary" href="{% url 'parent_edit_page' %}">
+  Edit parent Info
+</a>
+
 <div class="page-header">
   <h3 class="text-center">
     {{ parent.first_name|capfirst }} {{ parent.last_name|capfirst }}

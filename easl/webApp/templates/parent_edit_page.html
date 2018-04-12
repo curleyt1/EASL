@@ -27,5 +27,13 @@
   <h3> Parent Edit Page </h3>
 </div>
 
+<div id='form'>
+  <form method="post">
+  </br>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-default" type="submit" value="Save"/>
+  </form>
+</div>
 
 {% endblock %}

@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate
 from django.forms import ModelForm
 from django.contrib.auth import login
 from .forms import StudentEditForm
+from .forms import ParentEditForm
 from .forms import StudentSelectionForm
 from .forms import StudentRegistrationForm
 from .forms import ParentSignUpForm
@@ -172,8 +173,19 @@ def edit_page(request, id):
     else:
         return redirect('/accounts/login')
 
-def parent_edit_page(request):
-    return render(request, 'parent_edit_page.html')
+def parent_edit_page(request, parent):
+    parent = Student.objects.get(parent=parent)
+    display_success = False
+    if request.method == 'POST':
+        form = ParentEditForm(request.POST, instance=parent)
+        if form.is_valid():
+            parent = request.POST.get('parent', "")
+            form.save()
+            display_success = True
+    form = ParentEditForm(initial={
+        'parent': parent
+    })
+    return render(request, 'parent_edit_page.html', {'parent': parent, 'form': form, 'display_success': display_success})
 
 def save_action(request, id, action_code):
     if request.user.is_authenticated:

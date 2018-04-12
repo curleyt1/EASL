@@ -58,6 +58,13 @@ class StudentEditForm(ModelForm):
     gender = forms.Select(choices=GENDER_CHOICES)
     parent = forms.Select(choices = User.objects.all())
 
+class ParentEditForm(ModelForm):
+    class Meta:
+        model = Student
+        fields=('parent',)
+    parent = forms.CharField(max_length=50)
+    
+
 class ParentSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')

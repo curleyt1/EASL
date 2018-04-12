@@ -172,6 +172,9 @@ def edit_page(request, id):
     else:
         return redirect('/accounts/login')
 
+def parent_edit_page(request):
+    return render(request, 'parent_edit_page.html')
+
 def save_action(request, id, action_code):
     if request.user.is_authenticated:
         if request.user.is_staff:

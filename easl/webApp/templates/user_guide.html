@@ -28,7 +28,8 @@
 <body>
 <div class = 'body text-center'>
 
-<h3 class='jumbotron text-center'>This is the eASL user guide. Since eASL has multiple Users, there will be multiple sections of this User Guide.<br/></h3>
+<h3 class='jumbotron text-center'>This is the eASL User Guide. Since eASL has multiple Users, there will be multiple sections of this User Guide.<br/></h3>
+
 
 <strong>Section 1: The Teacher</strong><br/>
 
@@ -36,7 +37,7 @@
 
 <strong>Section 3: The Student</strong></p>
 
-<strong>The Teacher:</strong> The Teacher User should be used in conjunction with the Student<br/> User so that the Teacher may give the Student the application to relay their actions to the Teacher. <br/><strong>The Teacher User will be able to:</strong><br/>
+<strong>The Teacher:</strong> The Teacher User should be used in conjunction with the Student User so<br/> that the Teacher may give the Student the application to relay their actions to the Teacher. <br/><strong>The Teacher User will be able to:</strong><br/>
 Adding and Removing Students<br/>
 Adding and Removing Parents<br/>
 View the Timeline of individual Students<br/>
@@ -46,21 +47,22 @@ Edit Student Information<br/>
 Edit Parent Information<br/>
 These actions all fall within the scope of eASL's application.<br/>
 <br/>
-<strong>The Parent:</strong> The Parent User will only have access to this application <br/>if the Teacher User gives access. <br/>
+<strong>The Parent:</strong> The Parent User will only have access to this application if the Teacher User gives access. <br/>
 <strong>The Parent User will be able to:</strong><br/>
 Check the daily actions of their child student<br/>
 View the child's daily action log <br/>
 View the child's action log over the school year.<br/>
 <br/>
-<strong>The Student:</strong> The student will have the least functionality regarding actions<br/> performed within the eASL application. The Student User will be given the application via the <br/>Teacher User and will mark the actions the Student wishes to accomplish in the given moment. <br/>
+<strong>The Student:</strong> The Student User will have the least functionality regarding actions performed<br/> within the eASL application. The Student User will be given the application via the Teacher<br/> User and will mark the actions the Student wishes to accomplish in the given moment. <br/>
 <strong>The Student User will be able to:</strong><br/>
 Select action buttons
+<br/>
 
+<a class="btn btn-primary" href="{% url 'home' %}";>Go Back</a>
 </div>
 
 <br/>
-
-
+<br/>
 
 
 <div class='footer'>
@@ -70,6 +72,7 @@ Select action buttons
     <p><a href="{% url 'teacher_signup' %}">Teacher Registration</a></p>
     <p><a href="/about">About eASL</a></p>
     <p><a href="/user_guide">User Guide</a></p>
+    <p><a href="/
   </div>
 </div>
 {% endblock %}

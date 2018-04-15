@@ -6,10 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Student
 from .models import Action
 from django.conf import settings
-# from .models import Teacher
-# from .models import Parent
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 
 GENDER_CHOICES = (
     ('M'),
@@ -28,9 +28,21 @@ ACTION_CHOICES = (
 
 PARENT_CHOICES = User.objects.all()
 
-ACCOUNT_TYPE=(
-    ('Teacher'),
-    ('Parent'),
+VALID_DOMAINS = (
+    ('gmail.com'),
+    ('wit.edu'),
+    ('mit.edu'),
+    ('northeastern.edu'),
+    ('yahoo.com'),
+    ('yahoo.ca'),
+    ('hotmail.com'),
+    ('hotmail.co.uk'),
+    ('hotmail.fr'),
+    ('comcast.net'),
+    ('outlook.com'),
+    ('aol.com'),
+    ('verizon.net'),
+    ('protonmail.ch'),
 )
 
 class StudentSelectionForm(ModelForm):
@@ -70,16 +82,22 @@ class ParentEditForm(ModelForm):
 class ParentSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    email = models.EmailField(max_length=254, blank=False, unique=True, help_text='Required. Inform a valid email address.', validators=[validate_email])
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        domain = email.split('@')[1]
+        if domain not in VALID_DOMAINS:
+            raise ValidationError('\"' + domain + '\"' + ' does not appear to be a valid domain.')
+
 class TeacherSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    email = models.EmailField(max_length=254, blank=False, unique=True, help_text='Required. Inform a valid email address.', validators=[validate_email])
     is_staff = forms.BooleanField(initial=True, disabled=True)
 
     def __init__( self, *args, **kwargs ):
@@ -89,3 +107,9 @@ class TeacherSignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('is_staff', 'username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        domain = email.split('@')[1]
+        if domain not in VALID_DOMAINS:
+            raise ValidationError('\"' + domain + '\"' + ' does not appear to be a valid domain.')

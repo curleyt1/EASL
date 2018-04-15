@@ -22,6 +22,9 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# In production envronment has a path variable 'SECRET_KEY'.
+# SECRET_KEY = os.getenv('SECRET_KEY')
+# For testing locally the following key was generated upon starting the project.
 SECRET_KEY = 'e9%roz-ek26ne%_e1v6737jj)rmh*)o_b@g3sj7a_jsfo7!r67'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -137,7 +140,10 @@ DATE_INPUT_FORMATS = [
 '%m-%d-%y'       # '10-25-06'
 ]
 
-#Log emails into console
+# Log emails into console
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# use gmail's smtp service.
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "easl.no.reply@gmail.com"

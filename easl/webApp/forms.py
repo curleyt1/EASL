@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+
 GENDER_CHOICES = (
     ('M'),
     ('F'),

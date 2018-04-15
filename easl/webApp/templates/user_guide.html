@@ -1,0 +1,75 @@
+{% extends 'base_accounts.html' %}
+
+{% block content %}
+
+<style>
+  #form{
+    border: 5px solid powderblue;
+    text-align: center;
+  }
+  .jumbotron {
+    background: linear-gradient(to right, #4DE2B0, #2ADAE1);
+  }
+  body{
+    background: #E7FBFB;
+  }
+  .logo{
+    position: relative;
+    float:left;
+
+  }
+
+</style>
+  <img class ='logo' src='https://s3.amazonaws.com/easl-static/eASl_logo.png' height="50" width="75">
+
+
+  <h2 class='jumbotron text-center'> User Guide</h2>
+
+<body>
+<div class = 'body text-center'>
+
+<h3 class='jumbotron text-center'>This is the eASL user guide. Since eASL has multiple Users, there will be multiple sections of this User Guide.<br/></h3>
+
+<strong>Section 1: The Teacher</strong><br/>
+
+<strong>Section 2: The Parent</strong><br/>
+
+<strong>Section 3: The Student</strong></p>
+
+<strong>The Teacher:</strong> The Teacher User should be used in conjunction with the Student<br/> User so that the Teacher may give the Student the application to relay their actions to the Teacher. <br/><strong>The Teacher User will be able to:</strong><br/>
+Adding and Removing Students<br/>
+Adding and Removing Parents<br/>
+View the Timeline of individual Students<br/>
+View the Action Log of individual Students<br/>
+View the Action Log of all Students<br/>
+Edit Student Information<br/>
+Edit Parent Information<br/>
+These actions all fall within the scope of eASL's application.<br/>
+<br/>
+<strong>The Parent:</strong> The Parent User will only have access to this application <br/>if the Teacher User gives access. <br/>
+<strong>The Parent User will be able to:</strong><br/>
+Check the daily actions of their child student<br/>
+View the child's daily action log <br/>
+View the child's action log over the school year.<br/>
+<br/>
+<strong>The Student:</strong> The student will have the least functionality regarding actions<br/> performed within the eASL application. The Student User will be given the application via the <br/>Teacher User and will mark the actions the Student wishes to accomplish in the given moment. <br/>
+<strong>The Student User will be able to:</strong><br/>
+Select action buttons
+
+</div>
+
+<br/>
+
+
+
+
+<div class='footer'>
+  <div class='text-center'>
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    <p><a href="{% url 'parent_signup' %}">Parent Registration</a></p>
+    <p><a href="{% url 'teacher_signup' %}">Teacher Registration</a></p>
+    <p><a href="/about">About eASL</a></p>
+    <p><a href="/user_guide">User Guide</a></p>
+  </div>
+</div>
+{% endblock %}

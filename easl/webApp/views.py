@@ -213,6 +213,7 @@ def save_action(request, id, action_code):
     else:
         return redirect('/accounts/login')
 
+
 # TODO: re-create as a post form to validate with CSRF
 def delete_student(request, id):
     if request.user.is_authenticated:
@@ -234,3 +235,5 @@ class unauthorized(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = "about.html"
+class user_guide(TemplateView):
+    template_name = "user_guide.html"

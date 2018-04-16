@@ -83,7 +83,7 @@ def action_log(request):
             actions_grouped = defaultdict(list)
             for action in actions:
                 actions_grouped[action.date].append(action)
-            return render(request, 'action_log.html', {'grouped_actions': sorted(actions_grouped.items())})
+            return render(request, 'action_log.html', {'grouped_actions': reversed(sorted(actions_grouped.items()))})
         else:
             return redirect('/unauth')
     else:
@@ -108,7 +108,7 @@ def student_action_log(request, id):
             actions_grouped = defaultdict(list)
             for action in actions:
                 actions_grouped[action.date].append(action)
-            return render(request, 'action_log.html', {'grouped_actions': sorted(actions_grouped.items())})
+            return render(request, 'action_log.html', {'grouped_actions': reversed(sorted(actions_grouped.items()))})
         else:
             return redirect('/unauth')
     else:

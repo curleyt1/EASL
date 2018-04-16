@@ -214,7 +214,7 @@ def save_action(request, id, action_code):
                 acting_student = Student.objects.get(id=id)
             except Student.DoesNotExist:
                 raise Http404('Student not found')
-            action = Action.objects.create(time = timezone.now(), action = action_code, student = acting_student)
+            action = Action.objects.create(time = timezone.now(), date=datetime.datetime.today(), action = action_code, student = acting_student)
             today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
             today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
             actions = Action.objects.filter(student=acting_student, time__range=(today_min, today_max))

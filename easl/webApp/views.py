@@ -1,4 +1,5 @@
 import datetime
+from collections import defaultdict
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
@@ -76,7 +77,13 @@ def action_log(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
             actions = Action.objects.all()
-            return render(request, 'action_log.html', {'actions': actions})
+            # Take list of actions and create a dictionary of action dates.
+            # Each date will have a list of actions grouped into it.
+            print(actions)
+            actions_grouped = defaultdict(list)
+            for action in actions:
+                actions_grouped[action.date].append(action)
+            return render(request, 'action_log.html', {'grouped_actions': sorted(actions_grouped.items())})
         else:
             return redirect('/unauth')
     else:
@@ -95,7 +102,13 @@ def student_action_log(request, id):
             raise Http404('Student not found')
         if request.user.is_staff or student.parent == request.user:
             actions = Action.objects.filter(student=student)
-            return render(request, 'action_log.html', {'actions': actions})
+            # Take list of actions and create a dictionary of action dates.
+            # Each date will have a list of actions grouped into it.
+            print(actions)
+            actions_grouped = defaultdict(list)
+            for action in actions:
+                actions_grouped[action.date].append(action)
+            return render(request, 'action_log.html', {'grouped_actions': sorted(actions_grouped.items())})
         else:
             return redirect('/unauth')
     else:

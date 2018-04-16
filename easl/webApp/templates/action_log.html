@@ -20,18 +20,22 @@
 
 </div>
 
-{% for action in actions %}
-  <div class="text-center">
-    <div class="col-md-4">
-      {{ action.student }}
-    </div>
-    <div class="col-md-4">
+
+{% for date, actions in grouped_actions %}
+  <h2 class="text-center">{{date}}</h2>
+  {% for action in actions %}
+    <div class="text-center">
+      <div class="col-md-4">
+        {{ action.student }}
+      </div>
+      <div class="col-md-4">
         {{ action.get_action_display }}
-    </div>
-    <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
         {{ action.time }}
+      </div>
     </div>
-  </div>
+  {% endfor %}
 {% endfor %}
 
 {% endblock %}

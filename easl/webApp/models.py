@@ -34,6 +34,7 @@ class Student(models.Model):
 class Action(models.Model):
     ACTION_CHOICES = [('S', 'Snack'), ('P', 'Play'), ('O', 'Outside'), ('B', 'Bathroom'), ('C', 'CallHome'), ('N', 'Nurse'), ('R', 'Read')]
     time = models.DateTimeField()
+    date = models.DateField()
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     student = models.ForeignKey('Student', on_delete=models.CASCADE)
 

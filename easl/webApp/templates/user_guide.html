@@ -12,6 +12,8 @@
   }
   body{
     background: #E7FBFB;
+    margin: 30px;
+    
   }
   .logo{
     position: relative;
@@ -20,26 +22,30 @@
   }
 
 </style>
-  <img class ='logo' src='https://s3.amazonaws.com/easl-static/eASl_logo.png' height="50" width="75">
+  <img class ='logo' src='https://s3.amazonaws.com/easl-static/eASl_logo.png' height="60" width="75">
 
 
   <h2 class='jumbotron text-center'> User Guide</h2>
 
-<body>
-<div class = 'body text-center'>
+
+
+<div class = 'body text-left'>
 
 <h3 class='jumbotron text-center'>This is the eASL User Guide. Since eASL has multiple Users, there will be multiple sections of this User Guide.<br/></h3>
 <p>
-
-<strong>Section 1: The Teacher</strong><br/>
+<body>
+<strong><font size=5>Section 1: The Teacher</strong><br/>
 
 <strong>Section 2: The Parent</strong><br/>
 
 <strong>Section 3: The Student</strong><br/>
 
 <strong>Section 4: HowTo</strong><br/></p>
-
-<strong>The Teacher:</strong> The Teacher User should be used in conjunction with the Student User so<br/> that the Teacher may give the Student the application to relay their actions to the Teacher. <br/><strong>The Teacher User will be able to:</strong><br/>
+</font>
+<br/>
+<br/>
+<strong><font size=5>Section 1:</strong></font><br/>
+<strong><font size=4>The Teacher:</strong> The Teacher User should be used in conjunction with the Student User so<br/> that the Teacher may give the Student the application to relay their actions to the Teacher. <br/><strong>The Teacher User will be able to:</strong><br/>
 Adding and Removing Students<br/>
 Adding and Removing Parents<br/>
 View the Timeline of individual Students<br/>
@@ -49,17 +55,20 @@ Edit Student Information<br/>
 Edit Parent Information<br/>
 These actions all fall within the scope of eASL's application.<br/>
 <br/>
+<strong><font size=5>Section 2:</strong></font><br/>
 <strong>The Parent:</strong> The Parent User will only have access to this application if the Teacher User gives access. <br/>
 <strong>The Parent User will be able to:</strong><br/>
 Check the daily actions of their child student<br/>
 View the child's daily action log <br/>
 View the child's action log over the school year.<br/>
 <br/>
+<strong><font size=5>Section 3:</strong></font><br/>
 <strong>The Student:</strong> The Student User will have the least functionality regarding actions performed<br/> within the eASL application. The Student User will be given the application via the Teacher<br/> User and will mark the actions the Student wishes to accomplish in the given moment. <br/>
 <strong>The Student User will be able to:</strong><br/>
 Select action buttons
 <br/>
 <br/>
+<strong><font size=5>Section 4:</strong></font><br/>
 <strong>HowTo:</strong> This section describes the basic flow of actions of a regular visit to the <br/>eASL application along with a description for each step.<br/>
 <strong>Step 1: Creating an Account</strong> <br/>
 When the user first opens the eASL application, they will be prompted<br/> to create either a teacher or parent account; depending on what type <br/>of user is using the eASL application.<br/>
@@ -69,12 +78,15 @@ This step is primarily focused on Teacher users because Teachers are the only on
 This step is primarily focused on Teacher users again. Once the Student <br/>is input into the database, the Teacher can click on the dropdown <br/>menu located on the Student Selection Page and navigate to the Student <br/>they just created or an existing Student they are working with and click <br/>'Log in'. From here, the Teacher user will be able to view the Student's Profile Page<br/> along with their timeline, action log, and information about the student.<br/>
 <strong>Step 4: Save Actions</strong><br/>
 This step may be viewable by all users, but the Student User will be <br/>the one saving the actions. Once the Teacher is on the Student's Profile Page,<br/> the teacher hands the device to the student and the student will be allowed <br/>to select the action that they wish to perform. Once an action is selected,<br/> that action is saved into the database and displayed on the child's timeline as well <br/>as their action log. This action may be viewed by the Teacher and the Parent as well. <br/> 
+</font>
+
+<br/>
 <a class="btn btn-primary" href="{% url 'home' %}";>Go Back</a>
 </div>
 
 <br/>
 
-
+</body>
 
 <div class='footer'>
   <div class='text-center'>
